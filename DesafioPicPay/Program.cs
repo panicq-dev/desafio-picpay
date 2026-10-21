@@ -1,25 +1,34 @@
 using DesafioPicPay.Infra;
 using DesafioPicPay.Infra.Repositorios.Carteiras;
 using DesafioPicPay.Infra.Repositorios.Transferencias;
+using DesafioPicPay.Services.Carteiras;
+using DesafioPicPay.Services.Transferencias;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+// Swagger Container.
+builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+// Conexão.
 builder.Services.AddDbContext<AplicacaoDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddScoped<ICarteiraRepositorio, CarteiraRepositorio>();
+// Repositorios.
+builder.Services.AddScoped<ICarteiraRepositorio, CarteiraRepositorio>(); 
 builder.Services.AddScoped<ITransferenciaRepositorio, TransferenciaRepositorio>();
+// AutoMapper.
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); 
+// Services
+builder.Services.AddScoped<ICarteiraService, CarteiraService>();
+builder.Services.AddScoped<ITransferenciaService, TransferenciaService>();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 app.MapControllers();
 app.UseHttpsRedirection();

@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DesafioPicPay.Models.Request;
 
-public class TransferenciaRequest
+public class TransferenciaRequestDto
 {
     [Required(ErrorMessage = "O valor é obrigatório.")]
     [Range(0.01, double.MaxValue, ErrorMessage = "O valor deve ser maior que zero.")]

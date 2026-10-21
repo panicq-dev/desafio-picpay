@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "UFjJthLdkdE=",
+  "dgSpecHash": "FOI/UKYKyS8=",
   "success": true,
   "projectFilePath": "/home/gabriel/RiderProjects/DesafioPicPay/DesafioPicPay/DesafioPicPay.csproj",
   "expectedPackageFiles": [
@@ -22,6 +22,7 @@
     "/home/gabriel/.nuget/packages/microsoft.entityframeworkcore.relational/10.0.13/microsoft.entityframeworkcore.relational.10.0.13.nupkg.sha512",
     "/home/gabriel/.nuget/packages/microsoft.entityframeworkcore.sqlite/10.0.13/microsoft.entityframeworkcore.sqlite.10.0.13.nupkg.sha512",
     "/home/gabriel/.nuget/packages/microsoft.entityframeworkcore.sqlite.core/10.0.13/microsoft.entityframeworkcore.sqlite.core.10.0.13.nupkg.sha512",
+    "/home/gabriel/.nuget/packages/microsoft.extensions.apidescription.server/10.0.0/microsoft.extensions.apidescription.server.10.0.0.nupkg.sha512",
     "/home/gabriel/.nuget/packages/microsoft.extensions.dependencymodel/10.0.13/microsoft.extensions.dependencymodel.10.0.13.nupkg.sha512",
     "/home/gabriel/.nuget/packages/microsoft.openapi/2.12.0/microsoft.openapi.2.12.0.nupkg.sha512",
     "/home/gabriel/.nuget/packages/microsoft.visualstudio.solutionpersistence/1.0.52/microsoft.visualstudio.solutionpersistence.1.0.52.nupkg.sha512",
@@ -32,6 +33,10 @@
     "/home/gabriel/.nuget/packages/sqlitepclraw.core/2.1.13/sqlitepclraw.core.2.1.13.nupkg.sha512",
     "/home/gabriel/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.13/sqlitepclraw.lib.e_sqlite3.2.1.13.nupkg.sha512",
     "/home/gabriel/.nuget/packages/sqlitepclraw.provider.e_sqlite3/2.1.13/sqlitepclraw.provider.e_sqlite3.2.1.13.nupkg.sha512",
+    "/home/gabriel/.nuget/packages/swashbuckle.aspnetcore/10.3.1/swashbuckle.aspnetcore.10.3.1.nupkg.sha512",
+    "/home/gabriel/.nuget/packages/swashbuckle.aspnetcore.swagger/10.3.1/swashbuckle.aspnetcore.swagger.10.3.1.nupkg.sha512",
+    "/home/gabriel/.nuget/packages/swashbuckle.aspnetcore.swaggergen/10.3.1/swashbuckle.aspnetcore.swaggergen.10.3.1.nupkg.sha512",
+    "/home/gabriel/.nuget/packages/swashbuckle.aspnetcore.swaggerui/10.3.1/swashbuckle.aspnetcore.swaggerui.10.3.1.nupkg.sha512",
     "/home/gabriel/.nuget/packages/system.codedom/6.0.0/system.codedom.6.0.0.nupkg.sha512",
     "/home/gabriel/.nuget/packages/system.composition/9.0.0/system.composition.9.0.0.nupkg.sha512",
     "/home/gabriel/.nuget/packages/system.composition.attributedmodel/9.0.0/system.composition.attributedmodel.9.0.0.nupkg.sha512",

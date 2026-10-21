@@ -10,17 +10,17 @@ namespace DesafioPicPay.Services.Transferencias;
 public class TransferenciaService : ITransferenciaService
 {
 
-    public readonly CarteiraRepositorio _carteiraRepositorio;
-    private readonly TransferenciaRepositorio _transferenciaRepositorio;
+    private readonly ICarteiraRepositorio _carteiraRepositorio;
+    private readonly ITransferenciaRepositorio _transferenciaRepositorio;
 
-    public TransferenciaService(CarteiraRepositorio carteiraRepositorio,
-        TransferenciaRepositorio transferenciaRepositorio)
+    public TransferenciaService(ICarteiraRepositorio carteiraRepositorio,
+        ITransferenciaRepositorio transferenciaRepositorio)
     {
         _carteiraRepositorio = carteiraRepositorio;
         _transferenciaRepositorio = transferenciaRepositorio;
     }
 
-    public async Task<Result<TransferenciaResponseDto>> ExecutarAsync(TransferenciaRequest transferencia)
+    public async Task<Result<TransferenciaResponseDto>> ExecutarAsync(TransferenciaRequestDto transferencia)
     {
         var pagador = await _carteiraRepositorio.BuscarPorId(transferencia.PagadorId);
         var recebedor = await _carteiraRepositorio.BuscarPorId(transferencia.RecebedorId);

@@ -7,5 +7,5 @@ namespace DesafioPicPay.Services.Transferencias;
 
 public interface ITransferenciaService
 {
-    public Task<Result<TransferenciaResponseDto>>ExecutarAsync(TransferenciaRequest transferencia);
+    public Task<Result<TransferenciaResponseDto>>ExecutarAsync(TransferenciaRequestDto transferencia);
 }

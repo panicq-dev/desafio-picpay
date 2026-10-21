@@ -71,6 +71,10 @@
             "SQLite": {
               "target": "Package",
               "version": "[3.54.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[10.3.1, )"
             }
           },
           "imports": [

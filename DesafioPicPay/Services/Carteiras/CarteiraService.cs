@@ -6,9 +6,9 @@ namespace DesafioPicPay.Services.Carteiras;
 
 public class CarteiraService : ICarteiraService
 {
-    public readonly CarteiraRepositorio _repositorio;
+    private readonly ICarteiraRepositorio _repositorio;
 
-    public CarteiraService(CarteiraRepositorio repositorio)
+    public CarteiraService(ICarteiraRepositorio repositorio)
     {
         _repositorio = repositorio;
     }

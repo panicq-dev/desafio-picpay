@@ -1,4 +1,6 @@
+using AutoMapper;
 using DesafioPicPay.Models;
+using DesafioPicPay.Models.Response;
 using Microsoft.EntityFrameworkCore;
 
 namespace DesafioPicPay.Infra.Repositorios.Carteiras;
@@ -6,10 +8,12 @@ namespace DesafioPicPay.Infra.Repositorios.Carteiras;
 public class CarteiraRepositorio : ICarteiraRepositorio
 {
     private readonly AplicacaoDbContext _contexto;
+    private readonly IMapper _mapper;
 
-    public CarteiraRepositorio(AplicacaoDbContext contexto)
+    public CarteiraRepositorio(AplicacaoDbContext contexto, IMapper mapper)
     {
         _contexto = contexto;
+        _mapper = mapper;
     }
 
     public async Task AddAsync(CarteiraEntidade carteira)
@@ -17,18 +21,19 @@ public class CarteiraRepositorio : ICarteiraRepositorio
         await _contexto.Carteiras.AddAsync(carteira);
     }
 
-    public async Task UpdateAsync(CarteiraEntidade carteira)
+    public Task UpdateAsync(CarteiraEntidade carteira)
     {
         _contexto.Carteiras.Update(carteira);
+        return Task.CompletedTask;
     }
 
-    public async Task<CarteiraEntidade> BuscarCpfCnpjEmail(string cpfcnpj, string email)
+    public async Task<CarteiraEntidade?> BuscarCpfCnpjEmail(string cpfcnpj, string email)
     {
         return await _contexto.Carteiras.FirstOrDefaultAsync(c
             => c.CPFCNPJ.Equals(cpfcnpj) || c.Email.Equals(email));
     }
 
-    public async Task<CarteiraEntidade> BuscarPorId(int idCarteira)
+    public async Task<CarteiraEntidade?> BuscarPorId(int idCarteira)
     {
         return await _contexto.Carteiras.FirstOrDefaultAsync(c => c.Id == idCarteira);
     }
