@@ -28,6 +28,11 @@ public class CarteiraRepositorio : ICarteiraRepositorio
             => c.CPFCNPJ.Equals(cpfcnpj) || c.Email.Equals(email));
     }
 
+    public async Task<CarteiraEntidade> BuscarPorId(int idCarteira)
+    {
+        return await _contexto.Carteiras.FirstOrDefaultAsync(c => c.Id == idCarteira);
+    }
+
     public async Task CommitAsync()
     {
         await _contexto.SaveChangesAsync();
