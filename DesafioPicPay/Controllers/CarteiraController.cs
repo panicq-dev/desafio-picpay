@@ -13,14 +13,10 @@ namespace DesafioPicPay.Controllers;
 [Route("[controller]")]
 public class CarteiraController : ControllerBase
 {
-    private readonly ICarteiraRepositorio _carteiraRepositorio;
     private readonly ICarteiraService _carteiraService;
-    private readonly IMapper _mapper;
 
-    public CarteiraController(ICarteiraRepositorio carteiraRepositorio, IMapper mapper, ICarteiraService carteiraService)
+    public CarteiraController(ICarteiraService carteiraService)
     {
-        _carteiraRepositorio = carteiraRepositorio;
-        _mapper = mapper;
         _carteiraService = carteiraService;
     }
 
@@ -28,10 +24,12 @@ public class CarteiraController : ControllerBase
     public async Task<IActionResult> CriarEntidade(CarteiraRequestDto carteiraRequestDto)
     {
         // Ponto legal para implementar depois: verificar se o usuário já existe na hora da criação.
-        var carteira = _mapper.Map<CarteiraEntidade>(carteiraRequestDto);
-        await _carteiraRepositorio.AddAsync(carteira);
-        var response = _mapper.Map<CarteiraResponseDto>(carteira);
-        return Ok(Result<CarteiraResponseDto>.Sucesso(response,"Carteira criada com sucesso!"));
+        var response = await _carteiraService.CriarCarteira(carteiraRequestDto);
+        if (response.EhSucesso == false)
+        {
+            return BadRequest("Erro ao criar a carteira.");
+        }
+        return Ok(response);
     }
 
 

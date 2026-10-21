@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/gabriel/RiderProjects/DesafioPicPay/DesafioPicPay/DesafioPicPay.csproj": {}
+    "/workspaces/desafio-picpay/DesafioPicPay/DesafioPicPay.csproj": {}
   },
   "projects": {
-    "/home/gabriel/RiderProjects/DesafioPicPay/DesafioPicPay/DesafioPicPay.csproj": {
+    "/workspaces/desafio-picpay/DesafioPicPay/DesafioPicPay.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/gabriel/RiderProjects/DesafioPicPay/DesafioPicPay/DesafioPicPay.csproj",
+        "projectUniqueName": "/workspaces/desafio-picpay/DesafioPicPay/DesafioPicPay.csproj",
         "projectName": "DesafioPicPay",
-        "projectPath": "/home/gabriel/RiderProjects/DesafioPicPay/DesafioPicPay/DesafioPicPay.csproj",
-        "packagesPath": "/home/gabriel/.nuget/packages/",
-        "outputPath": "/home/gabriel/RiderProjects/DesafioPicPay/DesafioPicPay/obj/",
+        "projectPath": "/workspaces/desafio-picpay/DesafioPicPay/DesafioPicPay.csproj",
+        "packagesPath": "/home/codespace/.nuget/packages/",
+        "outputPath": "/workspaces/desafio-picpay/DesafioPicPay/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/gabriel/.nuget/NuGet/NuGet.Config"
+          "/home/codespace/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -96,7 +96,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/gabriel/.dotnet/sdk/10.0.401/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.401/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
