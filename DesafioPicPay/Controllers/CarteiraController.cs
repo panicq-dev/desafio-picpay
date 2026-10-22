@@ -28,11 +28,10 @@ public class CarteiraController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CriarEntidade(CarteiraRequestDto carteiraRequestDto)
+    public async Task<IActionResult> CriarCarteira(CarteiraRequestDto carteiraRequestDto)
     {
-        // Ponto legal para implementar depois: verificar se o usuário já existe na hora da criação.
         var response = await _carteiraService.CriarCarteira(carteiraRequestDto);
-        if (response.EhSucesso == false) return BadRequest(response);
+        if (response.EhSucesso == false) return BadRequest(response); 
         return Ok(response);
     }
 

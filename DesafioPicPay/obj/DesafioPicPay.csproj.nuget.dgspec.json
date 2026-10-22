@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\labsfiap\\source\\repos\\desafio-picpay\\DesafioPicpay\\DesafioPicPay.csproj": {}
+    "C:\\Users\\labsfiap\\source\\repos\\desafio-picpay\\DesafioPicPay\\DesafioPicPay.csproj": {}
   },
   "projects": {
-    "C:\\Users\\labsfiap\\source\\repos\\desafio-picpay\\DesafioPicpay\\DesafioPicPay.csproj": {
+    "C:\\Users\\labsfiap\\source\\repos\\desafio-picpay\\DesafioPicPay\\DesafioPicPay.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\labsfiap\\source\\repos\\desafio-picpay\\DesafioPicpay\\DesafioPicPay.csproj",
+        "projectUniqueName": "C:\\Users\\labsfiap\\source\\repos\\desafio-picpay\\DesafioPicPay\\DesafioPicPay.csproj",
         "projectName": "DesafioPicPay",
-        "projectPath": "C:\\Users\\labsfiap\\source\\repos\\desafio-picpay\\DesafioPicpay\\DesafioPicPay.csproj",
+        "projectPath": "C:\\Users\\labsfiap\\source\\repos\\desafio-picpay\\DesafioPicPay\\DesafioPicPay.csproj",
         "packagesPath": "C:\\Users\\labsfiap\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\labsfiap\\source\\repos\\desafio-picpay\\DesafioPicpay\\obj\\",
+        "outputPath": "C:\\Users\\labsfiap\\source\\repos\\desafio-picpay\\DesafioPicPay\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

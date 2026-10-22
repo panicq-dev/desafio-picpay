@@ -41,20 +41,21 @@ public class TransferenciaService : ITransferenciaService
         var pagador = await _carteiraRepositorio.BuscarPorId(transferencia.PagadorId);
         var recebedor = await _carteiraRepositorio.BuscarPorId(transferencia.RecebedorId);
 
-        // Verificações para garantir que a transferência aconteça sem erros.
+        // REGRA DE NEGÓCIO: Verificações.
         if (recebedor is null || pagador is null)
             return Result<TransferenciaResponseDto>.Falha("Nenhuma entidade foi encontrada.");
 
+        // Verificação de tipo de entidade.
         if (pagador.TipoEntidade == TipoEntidade.Lojista)
             return Result<TransferenciaResponseDto>.Falha("Lojista não pode efetuar transação.");
         
-        if (pagador.SaldoConta < transferencia.Valor || pagador.SaldoConta == 0)
+        // Verificações de valor.
+        if (pagador.SaldoConta < transferencia.Valor || pagador.SaldoConta <= 0)
             return Result<TransferenciaResponseDto>.Falha("Saldo insuficiente.");
 
         // Após as verificações, atualizando saldo da conta.
         pagador.DebitarSaldo(transferencia.Valor);
         recebedor.CreditarSaldo(transferencia.Valor);
-
 
         // Iniciando a transferência no banco de dados.
         var transacao = new TransferenciaEntidade(pagador.Id, recebedor.Id, transferencia.Valor);
@@ -82,7 +83,7 @@ public class TransferenciaService : ITransferenciaService
             }
         }
 
-        // Envio de notificação.
+        // Envio de notificação para o pagador e recebedor.
         _notificacaoService.EnviarNotificacao();
 
         var response = new TransferenciaResponseDto(transacao.IdTransferencia, pagador.Id, recebedor.Id, transferencia.Valor);

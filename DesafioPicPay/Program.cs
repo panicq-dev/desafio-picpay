@@ -26,7 +26,9 @@ builder.Services.AddScoped<ICarteiraService, CarteiraService>();
 builder.Services.AddScoped<ITransferenciaService, TransferenciaService>();
 builder.Services.AddScoped<IAutorizadorService, AutorizadorService>();
 builder.Services.AddScoped<INotificacaoService, NotificacaoService>();
+// Services HttpClient
 builder.Services.AddHttpClient<ITransferenciaService, TransferenciaService>();
+builder.Services.AddHttpClient<IAutorizadorService, AutorizadorService>();
 
 var app = builder.Build();
 
