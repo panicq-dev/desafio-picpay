@@ -4,6 +4,7 @@ using DesafioPicPay.Infra.Result;
 using DesafioPicPay.Models;
 using DesafioPicPay.Models.Request;
 using DesafioPicPay.Models.Response;
+using DesafioPicPay.Services.Autorizador;
 
 namespace DesafioPicPay.Services.Transferencias;
 
@@ -13,9 +14,11 @@ public class TransferenciaService : ITransferenciaService
     private readonly ICarteiraRepositorio _carteiraRepositorio;
     private readonly ITransferenciaRepositorio _transferenciaRepositorio;
 
+    private readonly AutorizadorService _autorizadorService;
     public TransferenciaService(ICarteiraRepositorio carteiraRepositorio,
-        ITransferenciaRepositorio transferenciaRepositorio)
+        ITransferenciaRepositorio transferenciaRepositorio, AutorizadorService autorizadorService)
     {
+        _autorizadorService = autorizadorService;
         _carteiraRepositorio = carteiraRepositorio;
         _transferenciaRepositorio = transferenciaRepositorio;
     }
@@ -31,6 +34,12 @@ public class TransferenciaService : ITransferenciaService
             return Result<TransferenciaResponseDto>.Falha("Lojista não pode efetuar transação.");
         if (pagador.SaldoConta < transferencia.Valor)
             return Result<TransferenciaResponseDto>.Falha("Saldo insuficiente.");
+        var autorizador = await _autorizadorService.AutorizadorAsync();
+        if (autorizador != true)
+        {
+            return Result<TransferenciaResponseDto>.Falha("Você não está autorizado a realizar essa transação.");
+        }
+        
 
         pagador.DebitarSaldo(transferencia.Valor);
         recebedor.CreditarSaldo(transferencia.Valor);

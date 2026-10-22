@@ -20,6 +20,13 @@ public class CarteiraController : ControllerBase
         _carteiraService = carteiraService;
     }
 
+    [HttpGet]
+    public async Task<ActionResult<List<CarteiraResponseDto>>> BuscarTodas(CancellationToken cancellationToken)
+    {
+        var response = await _carteiraService.BuscarTodasAsync(cancellationToken);
+        return Ok(response);
+    }
+
     [HttpPost]
     public async Task<IActionResult> CriarEntidade(CarteiraRequestDto carteiraRequestDto)
     {

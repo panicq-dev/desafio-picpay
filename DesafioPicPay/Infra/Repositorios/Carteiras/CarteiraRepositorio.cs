@@ -27,6 +27,13 @@ public class CarteiraRepositorio : ICarteiraRepositorio
         return Task.CompletedTask;
     }
 
+    public async Task<List<CarteiraEntidade>> BuscarTodasAsync(CancellationToken cancellationToken)
+    {
+        return await _contexto.Carteiras
+            .AsNoTracking()
+            .ToListAsync(cancellationToken);
+    }
+
     public async Task<CarteiraEntidade?> BuscarCpfCnpjEmail(string cpfcnpj, string email)
     {
         return await _contexto.Carteiras.FirstOrDefaultAsync(c

@@ -18,6 +18,12 @@ public class CarteiraService : ICarteiraService
         _mapper = mapper;
     }
 
+    public async Task<List<CarteiraResponseDto>> BuscarTodasAsync(CancellationToken cancellationToken)
+    {
+        var carteiras = await _repositorio.BuscarTodasAsync(cancellationToken);
+        return _mapper.Map<List<CarteiraResponseDto>>(carteiras);
+    }
+
     public async Task<Result<CarteiraEntidade>> BuscarCarteira(string cpfcnpj, string email)
     {
         var usuario = await _repositorio.BuscarCpfCnpjEmail(cpfcnpj, email);
