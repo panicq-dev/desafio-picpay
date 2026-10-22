@@ -13,7 +13,7 @@ public class CarteiraEntidade
     public TipoEntidade TipoEntidade { get; set; }
 
     public CarteiraEntidade() { }
-    public CarteiraEntidade(string nomeCompleto, string cpfcnpj, string email, string senha, TipoEntidade tipoEntidade, decimal saldoConta = 2000)
+    public CarteiraEntidade(string nomeCompleto, string cpfcnpj, string email, string senha, TipoEntidade tipoEntidade, decimal saldoConta = 0)
     {
         NomeCompleto = nomeCompleto;
         CPFCNPJ = cpfcnpj;

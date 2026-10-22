@@ -24,7 +24,6 @@ public class CarteiraController : ControllerBase
     public async Task<ActionResult<List<CarteiraResponseDto>>> BuscarTodas()
     {
         var response = await _carteiraService.BuscarTodasAsync();
-      
         return Ok(response);
     }
 
@@ -33,10 +32,7 @@ public class CarteiraController : ControllerBase
     {
         // Ponto legal para implementar depois: verificar se o usuário já existe na hora da criação.
         var response = await _carteiraService.CriarCarteira(carteiraRequestDto);
-        if (response.EhSucesso == false)
-        {
-            return BadRequest("Erro ao criar a carteira.");
-        }
+        if (response.EhSucesso == false) return BadRequest(response);
         return Ok(response);
     }
 

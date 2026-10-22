@@ -42,6 +42,14 @@ public class CarteiraService : ICarteiraService
             return Result<CarteiraResponseDto>.Falha("Erro no preenchimento da carteira. Verifique novamente,");
         }
 
+        var cpfcpnj = carteiraRequest.CPFCNPJ;
+        var email = carteiraRequest.Email;
+        
+        if (await _repositorio.BuscarCpfCnpjEmail(cpfcpnj, email) is not null)
+        {
+            return Result<CarteiraResponseDto>.Falha("Erro: CPF, CNPJ ou e-mail já cadastrado.");
+        }
+
         var carteira = _mapper.Map<CarteiraEntidade>(carteiraRequest);
         await _repositorio.AddAsync(carteira);
         await _repositorio.CommitAsync();
