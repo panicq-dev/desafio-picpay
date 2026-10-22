@@ -3,6 +3,7 @@ using DesafioPicPay.Infra.Repositorios.Carteiras;
 using DesafioPicPay.Infra.Repositorios.Transferencias;
 using DesafioPicPay.Services.Autorizador;
 using DesafioPicPay.Services.Carteiras;
+using DesafioPicPay.Services.Notificacoes;
 using DesafioPicPay.Services.Transferencias;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +25,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ICarteiraService, CarteiraService>();
 builder.Services.AddScoped<ITransferenciaService, TransferenciaService>();
 builder.Services.AddScoped<IAutorizadorService, AutorizadorService>();
+builder.Services.AddScoped<INotificacaoService, NotificacaoService>();
 
 var app = builder.Build();
 

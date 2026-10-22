@@ -4,6 +4,7 @@ using DesafioPicPay.Infra.Result;
 using DesafioPicPay.Models;
 using DesafioPicPay.Models.Request;
 using DesafioPicPay.Models.Response;
+using DesafioPicPay.Services.Notificacoes;
 using DesafioPicPay.Services.Autorizador;
 
 namespace DesafioPicPay.Services.Transferencias;
@@ -13,37 +14,47 @@ public class TransferenciaService : ITransferenciaService
 
     private readonly ICarteiraRepositorio _carteiraRepositorio;
     private readonly ITransferenciaRepositorio _transferenciaRepositorio;
+    private readonly INotificacaoService _notificacaoService;
 
-    private readonly AutorizadorService _autorizadorService;
+    private readonly IAutorizadorService _autorizadorService;
     public TransferenciaService(ICarteiraRepositorio carteiraRepositorio,
-        ITransferenciaRepositorio transferenciaRepositorio, AutorizadorService autorizadorService)
+        ITransferenciaRepositorio transferenciaRepositorio, IAutorizadorService autorizadorService, INotificacaoService notificacaoService)
     {
         _autorizadorService = autorizadorService;
         _carteiraRepositorio = carteiraRepositorio;
         _transferenciaRepositorio = transferenciaRepositorio;
+        _notificacaoService = notificacaoService;
     }
 
     public async Task<Result<TransferenciaResponseDto>> ExecutarAsync(TransferenciaRequestDto transferencia)
     {
-        var pagador = await _carteiraRepositorio.BuscarPorId(transferencia.PagadorId);
-        var recebedor = await _carteiraRepositorio.BuscarPorId(transferencia.RecebedorId);
-
-        if (recebedor is null || pagador is null)
-            return Result<TransferenciaResponseDto>.Falha("Nenhuma entidade foi encontrada.");
-        if (pagador.TipoEntidade == TipoEntidade.Lojista)
-            return Result<TransferenciaResponseDto>.Falha("Lojista não pode efetuar transação.");
-        if (pagador.SaldoConta < transferencia.Valor)
-            return Result<TransferenciaResponseDto>.Falha("Saldo insuficiente.");
+        // Autorização.
         var autorizador = await _autorizadorService.AutorizadorAsync();
         if (autorizador != true)
         {
             return Result<TransferenciaResponseDto>.Falha("Você não está autorizado a realizar essa transação.");
         }
-        
 
+        // Buscando pagador e recebedor pelo ID.
+        var pagador = await _carteiraRepositorio.BuscarPorId(transferencia.PagadorId);
+        var recebedor = await _carteiraRepositorio.BuscarPorId(transferencia.RecebedorId);
+
+        // Verificações para garantir que a transferência aconteça sem erros.
+        if (recebedor is null || pagador is null)
+            return Result<TransferenciaResponseDto>.Falha("Nenhuma entidade foi encontrada.");
+
+        if (pagador.TipoEntidade == TipoEntidade.Lojista)
+            return Result<TransferenciaResponseDto>.Falha("Lojista não pode efetuar transação.");
+        
+        if (pagador.SaldoConta < transferencia.Valor || pagador.SaldoConta == 0)
+            return Result<TransferenciaResponseDto>.Falha("Saldo insuficiente.");
+
+        // Após as verificações, atualizando saldo da conta.
         pagador.DebitarSaldo(transferencia.Valor);
         recebedor.CreditarSaldo(transferencia.Valor);
 
+
+        // Iniciando a transferência no banco de dados.
         var transacao = new TransferenciaEntidade(pagador.Id, recebedor.Id, transferencia.Valor);
         using (var transferenciaEscopo = await _transferenciaRepositorio.BeginTransactionAsync())
         {
@@ -66,9 +77,11 @@ public class TransferenciaService : ITransferenciaService
             {
                 await transferenciaEscopo.RollbackAsync();
                 return Result<TransferenciaResponseDto>.Falha("Falha ao realizar a transferência");
-
             }
         }
+
+        // Envio de notificação.
+        _notificacaoService.EnviarNotificacao();
 
         var response = new TransferenciaResponseDto(transacao.IdTransferencia, pagador.Id, recebedor.Id, transferencia.Valor);
         return Result<TransferenciaResponseDto>.Sucesso(response, "Transferencia realizada com sucesso.");
