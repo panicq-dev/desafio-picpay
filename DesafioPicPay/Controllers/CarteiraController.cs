@@ -21,9 +21,10 @@ public class CarteiraController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<CarteiraResponseDto>>> BuscarTodas(CancellationToken cancellationToken)
+    public async Task<ActionResult<List<CarteiraResponseDto>>> BuscarTodas()
     {
-        var response = await _carteiraService.BuscarTodasAsync(cancellationToken);
+        var response = await _carteiraService.BuscarTodasAsync();
+      
         return Ok(response);
     }
 

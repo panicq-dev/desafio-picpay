@@ -1,0 +1,208 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "DesafioPicPay",
+    "version": "1.0"
+  },
+  "paths": {
+    "/Carteira": {
+      "get": {
+        "tags": [
+          "Carteira"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CarteiraResponseDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CarteiraResponseDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CarteiraResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Carteira"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CarteiraRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CarteiraRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CarteiraRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Transferencia": {
+      "post": {
+        "tags": [
+          "Transferencia"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferenciaRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferenciaRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferenciaRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CarteiraRequestDto": {
+        "required": [
+          "cpfcnpj",
+          "email",
+          "nomeCompleto",
+          "senha"
+        ],
+        "type": "object",
+        "properties": {
+          "nomeCompleto": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "cpfcnpj": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "email": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "senha": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "tipoEntidade": {
+            "$ref": "#/components/schemas/TipoEntidade"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CarteiraResponseDto": {
+        "type": "object",
+        "properties": {
+          "nomeCompleto": {
+            "type": "string",
+            "nullable": true
+          },
+          "cpfcnpj": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "saldoConta": {
+            "type": "number",
+            "format": "double"
+          },
+          "tipoEntidade": {
+            "$ref": "#/components/schemas/TipoEntidade"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TipoEntidade": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "TransferenciaRequestDto": {
+        "required": [
+          "pagadorId",
+          "recebedorId",
+          "valor"
+        ],
+        "type": "object",
+        "properties": {
+          "valor": {
+            "maximum": 1.7976931348623157E+308,
+            "minimum": 0.01,
+            "type": "number",
+            "format": "double"
+          },
+          "pagadorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recebedorId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Carteira"
+    },
+    {
+      "name": "Transferencia"
+    }
+  ]
+}

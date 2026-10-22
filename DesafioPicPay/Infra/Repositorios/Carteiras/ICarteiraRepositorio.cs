@@ -7,7 +7,7 @@ public interface ICarteiraRepositorio
 {
     Task AddAsync(CarteiraEntidade carteira);
     Task UpdateAsync(CarteiraEntidade carteira);
-    Task<List<CarteiraEntidade>> BuscarTodasAsync(CancellationToken cancellationToken);
+    Task<List<CarteiraEntidade>> BuscarTodasAsync();
     Task<CarteiraEntidade?> BuscarCpfCnpjEmail(string cpfcnpj, string email);
     Task<CarteiraEntidade?> BuscarPorId(int idCarteira);
     Task CommitAsync();

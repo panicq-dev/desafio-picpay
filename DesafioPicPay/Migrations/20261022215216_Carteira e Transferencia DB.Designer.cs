@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesafioPicPay.Migrations
 {
     [DbContext(typeof(AplicacaoDbContext))]
-    [Migration("20261019195412_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20261022215216_Carteira e Transferencia DB")]
+    partial class CarteiraeTransferenciaDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

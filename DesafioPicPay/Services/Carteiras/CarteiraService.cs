@@ -18,9 +18,9 @@ public class CarteiraService : ICarteiraService
         _mapper = mapper;
     }
 
-    public async Task<List<CarteiraResponseDto>> BuscarTodasAsync(CancellationToken cancellationToken)
+    public async Task<List<CarteiraResponseDto>> BuscarTodasAsync()
     {
-        var carteiras = await _repositorio.BuscarTodasAsync(cancellationToken);
+        var carteiras = await _repositorio.BuscarTodasAsync();
         return _mapper.Map<List<CarteiraResponseDto>>(carteiras);
     }
 
@@ -44,6 +44,7 @@ public class CarteiraService : ICarteiraService
 
         var carteira = _mapper.Map<CarteiraEntidade>(carteiraRequest);
         await _repositorio.AddAsync(carteira);
+        await _repositorio.CommitAsync();
         var response = _mapper.Map<CarteiraResponseDto>(carteira);
         return Result<CarteiraResponseDto>.Sucesso(response,"Carteira criada com sucesso!");
     }

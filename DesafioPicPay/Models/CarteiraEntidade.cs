@@ -12,8 +12,8 @@ public class CarteiraEntidade
     public decimal SaldoConta { get; set; }
     public TipoEntidade TipoEntidade { get; set; }
 
-    public CarteiraEntidade(){}
-    public CarteiraEntidade(string nomeCompleto, string cpfcnpj, string email, string senha, TipoEntidade tipoEntidade, decimal saldoConta = 0)
+    public CarteiraEntidade() { }
+    public CarteiraEntidade(string nomeCompleto, string cpfcnpj, string email, string senha, TipoEntidade tipoEntidade, decimal saldoConta = 2000)
     {
         NomeCompleto = nomeCompleto;
         CPFCNPJ = cpfcnpj;

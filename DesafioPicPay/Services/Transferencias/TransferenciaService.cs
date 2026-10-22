@@ -15,15 +15,17 @@ public class TransferenciaService : ITransferenciaService
     private readonly ICarteiraRepositorio _carteiraRepositorio;
     private readonly ITransferenciaRepositorio _transferenciaRepositorio;
     private readonly INotificacaoService _notificacaoService;
+    private readonly HttpClient _http;
 
     private readonly IAutorizadorService _autorizadorService;
     public TransferenciaService(ICarteiraRepositorio carteiraRepositorio,
-        ITransferenciaRepositorio transferenciaRepositorio, IAutorizadorService autorizadorService, INotificacaoService notificacaoService)
+        ITransferenciaRepositorio transferenciaRepositorio, IAutorizadorService autorizadorService, INotificacaoService notificacaoService, HttpClient htpp)
     {
         _autorizadorService = autorizadorService;
         _carteiraRepositorio = carteiraRepositorio;
         _transferenciaRepositorio = transferenciaRepositorio;
         _notificacaoService = notificacaoService;
+        _http = htpp;
     }
 
     public async Task<Result<TransferenciaResponseDto>> ExecutarAsync(TransferenciaRequestDto transferencia)

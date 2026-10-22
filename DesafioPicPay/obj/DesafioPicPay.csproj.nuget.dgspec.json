@@ -1,25 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/workspaces/desafio-picpay/DesafioPicPay/DesafioPicPay.csproj": {}
+    "C:\\Users\\labsfiap\\source\\repos\\desafio-picpay\\DesafioPicpay\\DesafioPicPay.csproj": {}
   },
   "projects": {
-    "/workspaces/desafio-picpay/DesafioPicPay/DesafioPicPay.csproj": {
+    "C:\\Users\\labsfiap\\source\\repos\\desafio-picpay\\DesafioPicpay\\DesafioPicPay.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/workspaces/desafio-picpay/DesafioPicPay/DesafioPicPay.csproj",
+        "projectUniqueName": "C:\\Users\\labsfiap\\source\\repos\\desafio-picpay\\DesafioPicpay\\DesafioPicPay.csproj",
         "projectName": "DesafioPicPay",
-        "projectPath": "/workspaces/desafio-picpay/DesafioPicPay/DesafioPicPay.csproj",
-        "packagesPath": "/home/codespace/.nuget/packages/",
-        "outputPath": "/workspaces/desafio-picpay/DesafioPicPay/obj/",
+        "projectPath": "C:\\Users\\labsfiap\\source\\repos\\desafio-picpay\\DesafioPicpay\\DesafioPicPay.csproj",
+        "packagesPath": "C:\\Users\\labsfiap\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\labsfiap\\source\\repos\\desafio-picpay\\DesafioPicpay\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/home/codespace/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\labsfiap\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,7 +46,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.400"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net10.0": {
@@ -65,6 +72,12 @@
               "version": "[10.0.13, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[10.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[10.0.13, )"
             },
@@ -96,7 +109,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.401/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
