@@ -24,6 +24,7 @@ public class TransferenciaController : ControllerBase
     public async Task<IActionResult> Transferir (TransferenciaRequestDto transferenciaDto)
     {
         var response = await _transferenciaService.ExecutarAsync(transferenciaDto);
+        if (response.EhSucesso == false) return BadRequest(response);
         return Ok(response);
     }
 
