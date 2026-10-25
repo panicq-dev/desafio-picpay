@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioPicPay", "DesafioPicPay\DesafioPicPay.csproj", "{9C4BD674-12CE-4E62-96E2-B011EFA989A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xUnitPicPay", "xUnitPicPay\xUnitPicPay.csproj", "{1D1DA51F-D771-42AC-B5A3-B96481A0D545}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{9C4BD674-12CE-4E62-96E2-B011EFA989A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C4BD674-12CE-4E62-96E2-B011EFA989A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C4BD674-12CE-4E62-96E2-B011EFA989A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D1DA51F-D771-42AC-B5A3-B96481A0D545}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D1DA51F-D771-42AC-B5A3-B96481A0D545}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D1DA51F-D771-42AC-B5A3-B96481A0D545}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D1DA51F-D771-42AC-B5A3-B96481A0D545}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
