@@ -134,4 +134,56 @@ public class TransferenciaServiceTests
         Assert.Equal(respostaEsperada, resposta.Mensagem);
         Assert.False(resposta.EhSucesso);
     }
+    [Fact]
+    public async Task ExecutarAsync_QuandoIdsForemIguais_DeveRetornarFalha()
+    {
+        // Arrange
+        var autorizador = new Mock<IAutorizadorService>();
+        var notificacao = new Mock<INotificacaoService>();
+        var carteiraRepositorio = new Mock<ICarteiraRepositorio>();
+        var transferenciaRepositorio = new Mock<ITransferenciaRepositorio>();
+        
+        autorizador.Setup(a => a.AutorizadorAsync())
+            .ReturnsAsync(true);
+        
+        var servicoTransferencia = new TransferenciaService(
+            carteiraRepositorio.Object,
+            transferenciaRepositorio.Object,
+            autorizador.Object,
+            notificacao.Object,
+            new HttpClient()
+        );
+
+        var pagador = new CarteiraEntidade()
+        {
+            Id = 1,
+            SaldoConta = 100m
+        };
+        carteiraRepositorio.Setup(c => c.BuscarPorId(1))
+            .ReturnsAsync(pagador);
+
+        var recebedor = new CarteiraEntidade()
+        {
+            Id = 1,
+            SaldoConta = 100m
+        };
+        carteiraRepositorio.Setup(c => c.BuscarPorId(2))
+            .ReturnsAsync(recebedor);
+        
+        var transferenciaRequest = new TransferenciaRequestDto()
+        {
+            PagadorId = pagador.Id,
+            RecebedorId = recebedor.Id,
+            Valor = 50
+        };
+        
+        
+        // Act 
+        var resposta = await servicoTransferencia.ExecutarAsync(transferenciaRequest);
+        var respostaEsperada = "O pagador e o recebor estão com IDs iguais. Não é possível realizar a transferência.";
+        
+        // Assert
+        Assert.Equal(respostaEsperada, resposta.Mensagem);
+        Assert.False(resposta.EhSucesso);
+    }
 }

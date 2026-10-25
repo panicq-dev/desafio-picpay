@@ -37,6 +37,10 @@ public class TransferenciaService : ITransferenciaService
             return Result<TransferenciaResponseDto>.Falha("Você não está autorizado a realizar essa transação.");
         }
 
+        if (transferencia.PagadorId == transferencia.RecebedorId)
+        {
+            return Result<TransferenciaResponseDto>.Falha("O pagador e o recebor estão com IDs iguais. Não é possível realizar a transferência.");
+        }
         // Buscando pagador e recebedor pelo ID.
         var pagador = await _carteiraRepositorio.BuscarPorId(transferencia.PagadorId);
         var recebedor = await _carteiraRepositorio.BuscarPorId(transferencia.RecebedorId);
