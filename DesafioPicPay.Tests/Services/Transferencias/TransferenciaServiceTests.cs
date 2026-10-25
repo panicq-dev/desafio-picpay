@@ -78,4 +78,60 @@ public class TransferenciaServiceTests
         Assert.False(resposta.EhSucesso);
         Assert.Equal(respostaEsperada, resposta.Mensagem);
     }
+
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-1)]
+    public async Task ExecutarAsync_QuandoValorDeTransferenciaForInvalido_DeveRetornarFalha(decimal valor)
+    {
+        // Arrange
+        var autorizador = new Mock<IAutorizadorService>();
+        var notificacao = new Mock<INotificacaoService>();
+        var carteiraRepositorio = new Mock<ICarteiraRepositorio>();
+        var transferenciaRepositorio = new Mock<ITransferenciaRepositorio>();
+        
+        autorizador.Setup(a => a.AutorizadorAsync())
+            .ReturnsAsync(true);
+        
+        var servicoTransferencia = new TransferenciaService(
+            carteiraRepositorio.Object,
+            transferenciaRepositorio.Object,
+            autorizador.Object,
+            notificacao.Object,
+            new HttpClient()
+            );
+
+        var pagador = new CarteiraEntidade()
+        {
+            Id = 1,
+            SaldoConta = 100m
+        };
+        carteiraRepositorio.Setup(c => c.BuscarPorId(1))
+            .ReturnsAsync(pagador);
+
+        var recebedor = new CarteiraEntidade()
+        {
+            Id = 2,
+            SaldoConta = 100m
+        };
+        carteiraRepositorio.Setup(c => c.BuscarPorId(2))
+            .ReturnsAsync(recebedor);
+        
+        var transferenciaRequest = new TransferenciaRequestDto()
+        {
+            PagadorId = pagador.Id,
+            RecebedorId = recebedor.Id,
+            Valor = valor
+        };
+        
+        
+        // Act 
+        var resposta = await servicoTransferencia.ExecutarAsync(transferenciaRequest);
+        var respostaEsperada = "Valor de transferência invalido.";
+        
+        // Assert
+        Assert.Equal(respostaEsperada, resposta.Mensagem);
+        Assert.False(resposta.EhSucesso);
+    }
 }
