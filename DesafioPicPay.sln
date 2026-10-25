@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioPicPay", "DesafioPicPay\DesafioPicPay.csproj", "{9C4BD674-12CE-4E62-96E2-B011EFA989A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xUnitPicPay", "xUnitPicPay\xUnitPicPay.csproj", "{1D1DA51F-D771-42AC-B5A3-B96481A0D545}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioPicPay.Tests", "DesafioPicPay.Tests\DesafioPicPay.Tests.csproj", "{1D1DA51F-D771-42AC-B5A3-B96481A0D545}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

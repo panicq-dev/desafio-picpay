@@ -51,8 +51,12 @@ public class TransferenciaService : ITransferenciaService
         
         // Verificações de valor.
         if (pagador.SaldoConta < transferencia.Valor || pagador.SaldoConta <= 0)
-            return Result<TransferenciaResponseDto>.Falha("Saldo insuficiente.");
+            return Result<TransferenciaResponseDto>.Falha("Essa transação não pode ser realizada! Verifique o saldo.");
 
+        if (transferencia.Valor <= 0)
+        {
+            return Result<TransferenciaResponseDto>.Falha("Valor de transferência invalido.");
+        }
         // Após as verificações, atualizando saldo da conta.
         pagador.DebitarSaldo(transferencia.Valor);
         recebedor.CreditarSaldo(transferencia.Valor);
