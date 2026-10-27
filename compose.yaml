@@ -1,0 +1,16 @@
+services:
+  api:
+    # 1. Substitui a imagem externa pelo caminho do seu Dockerfile local
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      # 2. Alterado para Development se você quiser debugar ou usar o Swagger localmente
+      ASPNETCORE_ENVIRONMENT: Development
+    volumes:
+      - picpay-data:/data
+
+volumes:
+  picpay-data:
