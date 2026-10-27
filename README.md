@@ -172,6 +172,23 @@ docker run -it --rm -v $(pwd):/project -w /project jakzal/phpqa phpmd app text c
 - Arquitetura (estruturar o pensamento antes de escrever)
 - Carinho em desacoplar componentes (outras camadas, service, repository)
 
+## Documentação da API
+
+Com a aplicação em execução no ambiente `Development`, a interface Swagger fica disponível em
+`http://localhost:8080/swagger`. Para iniciar os containers pela raiz do repositório, execute:
+
+```bash
+docker compose up --build
+```
+
+Também é possível iniciar usando o arquivo de compose do projeto:
+
+```bash
+docker compose -f DesafioPicPay/compose.yaml up --build
+```
+
+Os endpoints documentados são `GET /Carteira`, `POST /Carteira` e `POST /Transferencia`.
+
 ## Materiais úteis
 
 - https://picpay.com/site/sobre-nos

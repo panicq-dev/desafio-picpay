@@ -20,7 +20,13 @@ public class TransferenciaController : ControllerBase
         _transferenciaService = transferenciaService;
     }
 
+    /// <summary>Transfere saldo de uma carteira de usuário para outra carteira.</summary>
+    /// <param name="transferenciaDto">Valor e identificadores das carteiras de origem e destino.</param>
+    /// <response code="200">Transferência realizada com sucesso.</response>
+    /// <response code="400">Dados inválidos ou transferência não autorizada pelas regras de negócio.</response>
     [HttpPost]
+    [ProducesResponseType(typeof(Result<TransferenciaResponseDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Result<TransferenciaResponseDto>), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Transferir (TransferenciaRequestDto transferenciaDto)
     {
         var response = await _transferenciaService.ExecutarAsync(transferenciaDto);
